@@ -371,18 +371,15 @@ var scenes = [
       physics_world.gravitational_field.y = -9.81;
       create_rope(0.5, 9, 9.5, 9, 35, 30, 10, 0.8);
       physics_world.particles[0].fixed = false;
-      physics_world.create_particle(4.5, 2.5, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
-      physics_world.create_particle(6, 3, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
-      physics_world.create_particle(3, 3, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
-      physics_world.create_particle(2.5, 7.5, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.particles[physics_world.particles.length - 1].fixed = true;
-      physics_world.create_particle(7, 7.5, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.particles[physics_world.particles.length - 1].fixed = true;
-      physics_world.create_particle(4.5, 6, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
-      physics_world.particles[physics_world.particles.length - 1].fixed = true;
+      physics_world.create_particle(4.5, 2.5, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
+      //physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
+      physics_world.create_particle(6, 3, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
+      //physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
+      physics_world.create_particle(3, 3, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
+      //physics_world.create_point_constraint(physics_world.particles[physics_world.particles.length - 1], null, null, 1.0);
+      physics_world.create_particle(2.5, 7.5, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
+      physics_world.create_particle(7, 7.5, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
+      physics_world.create_particle(4.5, 6, 0, 0, 0, 0, 0, 0, 100, 0.5, true);
     }
 
   ],

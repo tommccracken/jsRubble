@@ -24,21 +24,25 @@
 
 // The HTML5 canvas element
 var canvas = document.getElementById("SketchCanvas");
-// A graphice context
+// Create a graphics context
 var ctx = canvas.getContext("2d");
-var draw_size, draw_scaling_factor;
 // Target update rate in Hz
 var physics_frequency = 50;
 // Associated physics update period
 var physics_period = 1 / physics_frequency;
-var world_size;
-var physics_world;
+// Rendering scaling variables
+var draw_size;
+var draw_scaling_factor;
 var debug_mode = false;
-var paused;
+// The physics world
+var physics_world;
+// The world size
+var world_size;
 // Declare loop timing variables
 var time_now;
 var time_prev;
 var delta;
+var paused;
 // Used to debounce resize calcultions
 var debounce;
 
@@ -77,7 +81,7 @@ function draw_world() {
     ctx.strokeStyle = 'rgba(53,53,53,1)';
     ctx.arc(physics_world.particles[count].pos.x * draw_scaling_factor, world_size * draw_scaling_factor - physics_world.particles[count].pos.y * draw_scaling_factor, physics_world.particles[count].radius * draw_scaling_factor, 0, 2 * Math.PI, false);
     if (physics_world.particles[count].fixed === true) {
-      ctx.fillStyle = 'rgba(255,155,0,0.5);';
+      ctx.fillStyle = 'rgba(255,155,33,0.5)';
     } else {
       ctx.fillStyle = 'rgba(33,220,33,0.5)';
     }
@@ -121,6 +125,8 @@ function resize_canvas() {
   ctx.canvas.width = draw_size;
   // Recalculate the draw scaling factor
   draw_scaling_factor = draw_size / world_size;
+  // Draw the world
+  draw_world();
 }
 
 function initilise() {
