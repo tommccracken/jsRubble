@@ -284,6 +284,141 @@ var scenes = [
 
   [
 
+    name = "Particle Attraction",
+
+    loader = function() {
+      physics_frequency = 50;
+      physics_period = 1 / physics_frequency;
+      world_size = 40;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = 0;
+      physics_world.particle_to_particle_collisions = true;
+      physics_world.simple_world_boundary_collisions = true;
+      physics_world.particle_to_particle_attraction_active = true;
+      this.particle_attraction_coefficient = 30;
+      physics_world.damping_coefficient = 0;
+
+      physics_world.create_particle(20, 15, 0, 0, 0, 0, 0, 0, 4, 4, false);
+      let previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+
+      physics_world.create_particle(12, 7, 0, 0, 0, 0, 0, 0, 1, 1, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(-0.05, 0.05));
+
+      physics_world.create_particle(14, 21, 0, 0, 0, 0, 0, 0, 1.5, 1.5, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+
+      physics_world.create_particle(17, 7, 0, 0, 0, 0, 0, 0, 1.5, 1.5, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(-0.05, 0.05));
+
+      physics_world.create_particle(34, 30, 0, 0, 0, 0, 0, 0, 1.7, 1.7, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(-0.05, 0.05));
+
+    }
+
+  ],
+
+  [
+
+    name = "Particle Cluster Attraction",
+
+    loader = function() {
+      physics_frequency = 50;
+      physics_period = 1 / physics_frequency;
+      world_size = 40;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = 0;
+      physics_world.particle_to_particle_collisions = true;
+      physics_world.simple_world_boundary_collisions = true;
+      physics_world.particle_to_particle_attraction_active = true;
+      this.particle_attraction_coefficient = 30;
+      physics_world.damping_coefficient = 0;
+
+      create_square_cluster(20, 20, -2 * PI / 8, 25, 25, 10, 10, 60, 50);
+
+      for (let i =0; i < physics_world.particles.length; i++){
+          physics_world.particles[i].attractive_strength=physics_world.particles[i].mass/60;
+      }
+    }
+
+  ],
+
+  [
+
+    name = "Elliptical Orbit",
+
+    loader = function() {
+      physics_frequency = 50;
+      physics_period = 1 / physics_frequency;
+      world_size = 100;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = 0;
+      physics_world.particle_to_particle_collisions = true;
+      physics_world.simple_world_boundary_collisions = false;
+      physics_world.particle_to_particle_attraction_active = true;
+      this.particle_attraction_coefficient = 30;
+      physics_world.damping_coefficient = 0;
+      physics_world.create_particle(50, 50, 0, 0, 0, 0, 0, 0, 130, 10, false);
+      let previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+      physics_world.create_particle(26, 20, 0, 0, 0, 0, 0, 0, 1, 1, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(-0.1, 0.1));
+
+    }
+
+  ],
+
+  [
+
+    name = "Multiple Satellite Orbit",
+
+    loader = function() {
+      physics_frequency = 50;
+      physics_period = 1 / physics_frequency;
+      world_size = 100;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = 0;
+      physics_world.particle_to_particle_collisions = true;
+      physics_world.simple_world_boundary_collisions = false;
+      physics_world.particle_to_particle_attraction_active = true;
+      this.particle_attraction_coefficient = 30;
+      physics_world.damping_coefficient = 0;
+
+      physics_world.create_particle(50, 50, 0, 0, 0, 0, 0, 0, 130, 10, false);
+      let previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.attractive_strength=previous_particle.mass;
+
+      physics_world.create_particle(25, 25, 0, 0, 0, 0, 0, 0, 1, 1, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(-0.15, 0.15));
+      previous_particle.attractive_strength=previous_particle.mass;
+
+      physics_world.create_particle(75, 75, 0, 0, 0, 0, 0, 0, 1, 1, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(0.15, -0.15));
+      previous_particle.attractive_strength=previous_particle.mass;
+
+      physics_world.create_particle(25, 75, 0, 0, 0, 0, 0, 0, 1, 1, false);
+      previous_particle = physics_world.particles[physics_world.particles.length-1];
+      previous_particle.pos_previous = previous_particle.pos.subtract(new Vector2(0.15, 0.15));
+      previous_particle.attractive_strength=previous_particle.mass;
+
+
+    }
+
+  ],
+
+  [
+
     name = "Combo-1",
 
     loader = function() {
