@@ -120,9 +120,10 @@ function resize_canvas() {
   // Resize the canvas element to suit the current viewport size/shape
   var viewport_width = $(window).width();
   var viewport_height = $(window).height();
-  draw_size = Math.round(0.80 * Math.min(viewport_width, 0.80 * viewport_height));
+  draw_size = Math.round(0.80 * Math.min(viewport_width, 0.85 * viewport_height));
   ctx.canvas.height = draw_size;
   ctx.canvas.width = draw_size;
+  $('#max-width-box').width(draw_size);
   // Recalculate the draw scaling factor
   draw_scaling_factor = draw_size / world_size;
   // Draw the world
@@ -145,7 +146,7 @@ function initialise() {
 }
 
 $('#scene_list').on('change', function () {
-  // Re-initialise if a different scene has been selected. Give the garbage collector an opportunity to clear scenes with large numbers of world elements.
+  // Reinitialise if a different scene has been selected. Give the garbage collector an opportunity to clear scenes with large numbers of world elements.
   var pause_state = paused;
   if (!paused) {
     paused = true;
@@ -175,7 +176,12 @@ $('#Step').on('click', function (e) {
 });
 
 $('#Reset').on('click', function (e) {
-  initialise();
+  // Reinitialise. Give the garbage collector an opportunity to clear scenes with large numbers of world elements.
+  var pause_state = paused;
+  if (!paused) {
+    paused = true;
+  }
+  setTimeout(function () { initialise(); paused = pause_state; }, 100);
 });
 
 $(window).resize(function () {
