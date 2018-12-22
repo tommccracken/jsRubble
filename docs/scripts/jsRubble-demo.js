@@ -146,7 +146,7 @@ function initialise() {
 
 $('#scene_list').on('change', function () {
   // Re-initialise if a different scene has been selected. Give the garbage collector an opportunity to clear scenes with large numbers of world elements.
-  let pause_state = paused;
+  var pause_state = paused;
   if (!paused) {
     paused = true;
   }
