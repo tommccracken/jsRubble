@@ -57,8 +57,8 @@ function draw_world() {
   // Draw the constraints
   for (var count = 0; count < physics_world.constraints.length; count++) {
     // Draw distance constraints
-    if (physics_world.constraints[count]instanceof DistanceConstraint) {
-      if (!(physics_world.constraints[count]instanceof ParticleContactConstraint) || debug_mode) {
+    if (physics_world.constraints[count] instanceof DistanceConstraint) {
+      if (!(physics_world.constraints[count] instanceof ParticleContactConstraint) || debug_mode) {
         ctx.beginPath();
         ctx.moveTo(physics_world.constraints[count].p1.pos.x * draw_scaling_factor, world_size * draw_scaling_factor - physics_world.constraints[count].p1.pos.y * draw_scaling_factor);
         ctx.lineTo(physics_world.constraints[count].p2.pos.x * draw_scaling_factor, world_size * draw_scaling_factor - physics_world.constraints[count].p2.pos.y * draw_scaling_factor);
@@ -120,7 +120,7 @@ function resize_canvas() {
   // Resize the canvas element to suit the current viewport size/shape
   var viewport_width = $(window).width();
   var viewport_height = $(window).height();
-  draw_size = Math.round(0.80 * Math.min(viewport_width, 0.85 * viewport_height));
+  draw_size = Math.round(0.80 * Math.min(viewport_width, 0.80 * viewport_height));
   ctx.canvas.height = draw_size;
   ctx.canvas.width = draw_size;
   // Recalculate the draw scaling factor
@@ -144,12 +144,12 @@ function initilise() {
   window.requestAnimationFrame(app_loop);
 }
 
-$('#scene_list').on('change', function() {
+$('#scene_list').on('change', function () {
   // Re-initialise if a different scene is selected
   initilise();
 });
 
-$('#ResumePause').on('click', function(e) {
+$('#ResumePause').on('click', function (e) {
   if (paused) {
     paused = false;
     $('#ResumePause').text('Pause');
@@ -165,23 +165,23 @@ $('#ResumePause').on('click', function(e) {
   draw_world();
 });
 
-$('#Step').on('click', function(e) {
+$('#Step').on('click', function (e) {
   physics_world.update();
   draw_world();
 });
 
-$('#Reset').on('click', function(e) {
+$('#Reset').on('click', function (e) {
   initilise();
 });
 
-$(window).resize(function() {
+$(window).resize(function () {
   clearTimeout(debounce);
-  debounce = setTimeout(function() {
+  debounce = setTimeout(function () {
     resize_canvas();
   }, 50);
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Populate the scenes select list with the available scenes
   populate_select_list();
   // Set the initial state of debug_mode to false
@@ -207,7 +207,7 @@ function populate_select_list() {
   $("#scene_list").prop('selectedIndex', 0);
 }
 
-$('#debug_checkbox').change(function() {
+$('#debug_checkbox').change(function () {
   debug_mode = $(this).prop('checked');
   if (paused) {
     draw_world();

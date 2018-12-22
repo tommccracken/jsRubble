@@ -28,7 +28,7 @@ var scenes = [
 
     name = "Cloth-flexible",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -49,7 +49,7 @@ var scenes = [
 
     name = "Cloth-stiff",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -69,7 +69,7 @@ var scenes = [
 
     name = "Cloth-breakable",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -91,9 +91,9 @@ var scenes = [
 
   [
 
-    name = "Flexible-blob-firm",
+    name = "Flexible-box-firm",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -109,7 +109,7 @@ var scenes = [
 
     name = "Flexible-box-soft",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -124,7 +124,7 @@ var scenes = [
 
     name = "Flexible-box-random",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -143,7 +143,7 @@ var scenes = [
 
     name = "Flexible-box-breakable",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -151,7 +151,7 @@ var scenes = [
       physics_world.gravitational_field.y = -9.81;
       var random_size = Math.random() * 4 + 1
       var random_angle = 2 * PI / 6 * Math.random();
-      create_blob(5, 6, PI / 6, 4, 4, 5, 5, 30, 50, 0.7, true, 0.12);
+      create_blob(5, 6, PI / 6, 4, 4, 5, 5, 30, 50, 0.7, true, 0.15);
     }
 
   ],
@@ -160,7 +160,7 @@ var scenes = [
 
     name = "Particle-cluster",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 100;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -175,7 +175,7 @@ var scenes = [
 
     name = "Rope-stiff",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -190,7 +190,7 @@ var scenes = [
 
     name = "Rope-stiff-with-ball",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -205,7 +205,7 @@ var scenes = [
 
     name = "Rope-stretchy",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -220,7 +220,7 @@ var scenes = [
 
     name = "Rope-stretchy-with-ball",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -235,7 +235,7 @@ var scenes = [
 
     name = "Double-pendulum",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -257,7 +257,7 @@ var scenes = [
 
     name = 'Cantilever',
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -286,7 +286,7 @@ var scenes = [
 
     name = "Gravitation-particles-few",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 40;
@@ -329,7 +329,7 @@ var scenes = [
 
     name = "Gravitation-particle-cluster-pattern",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 40;
@@ -354,7 +354,7 @@ var scenes = [
 
     name = "Gravitation-elliptical-orbit",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 100;
@@ -381,7 +381,7 @@ var scenes = [
 
     name = "Gravitation-unstable-satellites",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 100;
@@ -420,7 +420,7 @@ var scenes = [
 
     name = "Gravitation-stable-satellites",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 100;
@@ -463,7 +463,7 @@ var scenes = [
   [
     name = "Gravitation-binary-stars",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 100;
@@ -493,7 +493,7 @@ var scenes = [
 
     name = "Gravitation-random-coalescence-few",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 100;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -533,7 +533,7 @@ var scenes = [
 
     name = "Gravitation-random-coalescence-many",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 100;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -573,7 +573,7 @@ var scenes = [
 
     name = "Combo-1",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -590,7 +590,7 @@ var scenes = [
 
     name = "Combo-2",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 100;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -606,7 +606,7 @@ var scenes = [
 
     name = "Combo-3",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -626,17 +626,17 @@ var scenes = [
 
     name = "Combo-4",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
       physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
       physics_world.gravitational_field.y = -9.81;
-      create_rope(3, 9, 8, 9, 25, 30, 10, 0.8);
+      create_rope(3, 7, 8, 7, 35, 30, 10, 0.9);
       physics_world.particles[0].fixed = false;
-      physics_world.create_particle(physics_world.particles[physics_world.particles.length - 1].pos.x + 1, physics_world.particles[physics_world.particles.length - 1].pos.y, 0, 0, 0, 0, 0, 0, 50, 0.85, false);
+      physics_world.create_particle(physics_world.particles[physics_world.particles.length - 1].pos.x + 0.45, physics_world.particles[physics_world.particles.length - 1].pos.y, 0, 0, 0, 0, 0, 0, 25, 0.40, false);
       physics_world.create_distance_constraint(physics_world.particles[physics_world.particles.length - 1], physics_world.particles[physics_world.particles.length - 2], null, 1.0);
-      physics_world.create_particle(physics_world.particles[0].pos.x - 1, physics_world.particles[0].pos.y, 0, 0, 0, 0, 0, 0, 50, 0.80, false);
+      physics_world.create_particle(physics_world.particles[0].pos.x - 0.45, physics_world.particles[0].pos.y, 0, 0, 0, 0, 0, 0, 25, 0.40, false);
       physics_world.create_distance_constraint(physics_world.particles[physics_world.particles.length - 1], physics_world.particles[0], null, 1.0);
       physics_world.create_particle(3.5, 5, 0, 0, 0, 0, 0, 0, 100, 0.5, false);
       physics_world.particles[physics_world.particles.length - 1].fixed = true;
@@ -650,7 +650,7 @@ var scenes = [
 
     name = "Combo-5",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 50;
       physics_period = 1 / physics_frequency;
       world_size = 10;
@@ -675,7 +675,7 @@ var scenes = [
 
     name = "Balls-many",
 
-    loader = function() {
+    loader = function () {
       physics_frequency = 100;
       physics_period = 1 / physics_frequency;
       world_size = 10;
