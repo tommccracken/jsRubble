@@ -129,7 +129,7 @@ function resize_canvas() {
   draw_world();
 }
 
-function initilise() {
+function initialise() {
   // Load the currently selected scene
   scenes[$("#scene_list").prop('selectedIndex')][1].call();
   // Resize the canvas
@@ -145,8 +145,12 @@ function initilise() {
 }
 
 $('#scene_list').on('change', function () {
-  // Re-initialise if a different scene is selected
-  initilise();
+  // Re-initialise if a different scene has been selected. Give the garbage collector an opportunity to clear scenes with large numbers of world elements.
+  let pause_state = paused;
+  if (!paused) {
+    paused = true;
+  }
+  setTimeout(function () { initialise(); paused = pause_state; }, 100);
 });
 
 $('#ResumePause').on('click', function (e) {
@@ -171,7 +175,7 @@ $('#Step').on('click', function (e) {
 });
 
 $('#Reset').on('click', function (e) {
-  initilise();
+  initialise();
 });
 
 $(window).resize(function () {
@@ -193,7 +197,7 @@ $(document).ready(function () {
   $('#ResumePause').text('Pause');
   $('#ResumePause').width(button_width);
   // Initialise the scene
-  initilise();
+  initialise();
 });
 
 function populate_select_list() {
