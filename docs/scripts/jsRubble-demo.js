@@ -82,6 +82,8 @@ function draw_world() {
     ctx.arc(physics_world.particles[count].pos.x * draw_scaling_factor, world_size * draw_scaling_factor - physics_world.particles[count].pos.y * draw_scaling_factor, physics_world.particles[count].radius * draw_scaling_factor, 0, 2 * Math.PI, false);
     if (physics_world.particles[count].fixed === true) {
       ctx.fillStyle = 'rgba(255,155,33,0.5)';
+    } else if (physics_world.particles[count].SPH_particle) {
+      ctx.fillStyle = 'rgba(33,220,33,0.1)';
     } else {
       ctx.fillStyle = 'rgba(33,220,33,0.5)';
     }
@@ -99,6 +101,17 @@ function draw_world() {
     ctx.fillStyle = 'black';
     ctx.fillText("Physics steps: " + physics_world.steps + ", Physics time: " + physics_world.time.toFixed(3) + "s, Physics dt: " + physics_world.time_step.toFixed(3) + "s", 7, 16);
     ctx.fillText("Number of particles: " + physics_world.particles.length + ", Number of constraints: " + physics_world.constraints.length, 7, 16 + draw_size * 0.04);
+    // Draw the spatial hash
+    for (var i = 0; i < this.physics_world.SPH_sh.get_size(); i++) {
+      ctx.beginPath();
+      var coordinates = Object.keys(this.physics_world.SPH_sh.spatial_hash)[i].split(",");
+      var x = parseInt(coordinates[0]);
+      var y = parseInt(coordinates[1]);
+      ctx.moveTo(x * this.physics_world.SPH_sh.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_sh.bin_size * draw_scaling_factor - this.physics_world.SPH_sh.bin_size * draw_scaling_factor);
+      ctx.rect(x * this.physics_world.SPH_sh.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_sh.bin_size * draw_scaling_factor - this.physics_world.SPH_sh.bin_size * draw_scaling_factor, this.physics_world.SPH_sh.bin_size * draw_scaling_factor, this.physics_world.SPH_sh.bin_size * draw_scaling_factor);
+      ctx.strokeStyle = 'rgba(53,53,53,1)';
+      ctx.stroke();
+    }
   }
 }
 

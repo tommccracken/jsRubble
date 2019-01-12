@@ -93,40 +93,55 @@ limitations under the License.
   </div>
 
   <div class="container">
+    <br />
     <h1 id="About">About</h1>
-    <p>The aim of this project is to develop a 2D particle based constrained dynamics physics engine for producing
-      web based animations.</p>
-    <p>The dynamic behavior of different forms of matter can be approximated with various arrangements of particles
-      and constraints. This includes single particles, flexible bodies (string/rope, cloth, jelly), pseudo rigid
-      bodies (to-do) and fluids (to-do). The project is not intended to be used for scientific simulation/analysis.</p>
-    <p>The core elements of the physics engine are:</p>
-    <ul>
-      <li>A physics world, containing;</li>
-      <li>Particles</li>
-      <li>Constraints</li>
-      <li>Boundaries</li>
-    </ul>
-    <p>The physics engine, including this demonstration/documentation web page, is hosted on GitHub and licensed
-      under the permissive open source Apache 2.0 License.</p>
+    <br />
+    <p>The aim of this project is to develop a 2D particle based constrained dynamics physics engine for web based
+      animations.
+      <br />
+      <br />
+      The dynamic behavior of different forms of matter can be approximated using various arrangements of particles,
+      constraints and world boundaries. This includes the behavior of single particles, flexible bodies (eg
+      string/rope, cloth, jelly), pseudo rigid bodies (to-do) and fluids (eg water). This pure particle based approach,
+      where dynamic complexity emerges from carefully configured collections of simple elements, enables the physics
+      engine to be relatively light weight (e.g. collision detection only needs to consider particle-particle and
+      particle-boundary collisions).
+      <br />
+      <br />
+      The physics engine, including this demonstration/documentation web page, is hosted on GitHub and licensed under
+      the permissive open source Apache 2.0 License.
+      <br />
+      <br />
+      The engine is not intended to be used for scientific simulation/analysis.
+      <br />
+    </p>
+    <br />
     <h1 id="Usage">Usage</h1>
-    <p>TBA.</p>
+    <br />
+    <p>TBA.
+      <br />
+    </p>
+    <br />
     <h1 id="Future">Future</h1>
-    <p>Things that might be developed in the future include:</p>
+    <br />
+    <p>The following functionality may be implemented in the future:</p>
     <ul>
-      <li>Fluids (using Smoothed Particle Hydrodynamics)</li>
-      <li>Particle emitters and destroyers</li>
+      <li>Improved user interactivity (eg clicking/touching and dragging particles)</li>
+      <li>Angle constraints</li>
       <li>Arbitrary boundaries</li>
+      <li>More efficient vector math (reduced object construction/destruction)</li>
+      <li>More efficient fluid dynamics</li>
       <li>Friction</li>
-      <li>Pseudo rigid bodies</li>
       <li>Improved collision detection and response (particle-particle, particle-boundary)</li>
+      <li>Improved documentation</li>
+      <li>Additional spatial partitioning algorithms (grid, quadtree)</li>
+      <li>Collision detection optimisation using spatial partitioning</li>
+      <li>Pseudo rigid bodies</li>
+      <li>Particle emitters and destroyers</li>
       <li>Particle portals</li>
-      <li>Angle constraint</li>
       <li>Physics world import/export</li>
-      <li>More sophisticated demonstration application</li>
-      <li>Testing</li>
-      <li>Many tidy-ups and bug fixes</li>
     </ul>
-    <p>NOTE: THIS IS A RELATIVELY NEW PROJECT AND AS SUCH IS A WORK IN PROGRESS.</p>
+    <br />
     <hr>
     <footer>
       <p>&copy; Copyright Thomas O. McCracken 2017</p>
