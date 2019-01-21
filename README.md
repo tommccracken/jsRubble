@@ -24,7 +24,6 @@ TBA.
 
 The following functionality may be implemented in the future:
 
-- Improved user interactivity (eg clicking/touching and dragging particles)
 - Angle constraints
 - Arbitrary boundaries
 - More efficient vector math (reduced object construction/destruction)

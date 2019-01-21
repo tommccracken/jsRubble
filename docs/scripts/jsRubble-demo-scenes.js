@@ -91,23 +91,7 @@ var scenes = [
 
   [
 
-    name = "Flexible-box-firm",
-
-    loader = function () {
-      physics_frequency = 50;
-      physics_period = 1 / physics_frequency;
-      world_size = 10;
-      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
-      physics_world.gravitational_field.y = -9.81;
-      physics_world.particle_to_particle_collisions = false;
-      create_blob(5, 6, 2 * PI / 20 * 3, 4, 4, 5, 5, 30, 50, 1.0, false, null);
-    }
-
-  ],
-
-  [
-
-    name = "Flexible-box-soft",
+    name = "Flexible-box",
 
     loader = function () {
       physics_frequency = 50;
