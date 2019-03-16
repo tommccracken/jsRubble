@@ -107,16 +107,31 @@ function draw_world() {
     ctx.fillStyle = 'black';
     ctx.fillText("Physics steps: " + physics_world.steps + ", Physics time: " + physics_world.time.toFixed(3) + "s, Physics dt: " + physics_world.time_step.toFixed(3) + "s", 7, 16);
     ctx.fillText("Number of particles: " + physics_world.particles.length + ", Number of constraints: " + physics_world.constraints.length, 7, 16 + draw_size * 0.04);
-    // Draw the spatial hash
-    for (var i = 0; i < this.physics_world.SPH_sh.get_size(); i++) {
-      ctx.beginPath();
-      var coordinates = Object.keys(this.physics_world.SPH_sh.spatial_hash)[i].split(",");
-      var x = parseInt(coordinates[0]);
-      var y = parseInt(coordinates[1]);
-      ctx.moveTo(x * this.physics_world.SPH_sh.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_sh.bin_size * draw_scaling_factor - this.physics_world.SPH_sh.bin_size * draw_scaling_factor);
-      ctx.rect(x * this.physics_world.SPH_sh.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_sh.bin_size * draw_scaling_factor - this.physics_world.SPH_sh.bin_size * draw_scaling_factor, this.physics_world.SPH_sh.bin_size * draw_scaling_factor, this.physics_world.SPH_sh.bin_size * draw_scaling_factor);
-      ctx.strokeStyle = 'rgba(53,53,53,1)';
-      ctx.stroke();
+    if (physics_world.SPH_spatial_partitioning == 1) { // Draw the grid
+      for (var i = 0; i < this.physics_world.SPH_grid.grid_count_x; i++) {
+        for (var j = 0; j < this.physics_world.SPH_grid.grid_count_y; j++) {
+          ctx.beginPath();
+          ctx.moveTo(i * this.physics_world.SPH_grid.grid_size * draw_scaling_factor, world_size * draw_scaling_factor - j * this.physics_world.SPH_grid.grid_size * draw_scaling_factor - this.physics_world.SPH_grid.grid_size * draw_scaling_factor);
+          ctx.rect(i * this.physics_world.SPH_grid.grid_size * draw_scaling_factor, world_size * draw_scaling_factor - j * this.physics_world.SPH_grid.grid_size * draw_scaling_factor - this.physics_world.SPH_grid.grid_size * draw_scaling_factor, this.physics_world.SPH_grid.grid_size * draw_scaling_factor, this.physics_world.SPH_grid.grid_size * draw_scaling_factor);
+          if (physics_world.SPH_grid.elements[i][j].size == 0) {
+            ctx.fillStyle = 'rgba(53,53,53,0.2)';
+            ctx.fill();
+          }
+          ctx.strokeStyle = 'rgba(53,53,53,1)';
+          ctx.stroke();
+        }
+      }
+    } else if (physics_world.SPH_spatial_partitioning > 1) { // Draw the spatial hash
+      for (var i = 0; i < this.physics_world.SPH_grid.get_size(); i++) {
+        ctx.beginPath();
+        var coordinates = Object.keys(this.physics_world.SPH_grid.spatial_hash)[i].split(",");
+        var x = parseInt(coordinates[0]);
+        var y = parseInt(coordinates[1]);
+        ctx.moveTo(x * this.physics_world.SPH_grid.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_grid.bin_size * draw_scaling_factor - this.physics_world.SPH_grid.bin_size * draw_scaling_factor);
+        ctx.rect(x * this.physics_world.SPH_grid.bin_size * draw_scaling_factor, world_size * draw_scaling_factor - y * this.physics_world.SPH_grid.bin_size * draw_scaling_factor - this.physics_world.SPH_grid.bin_size * draw_scaling_factor, this.physics_world.SPH_grid.bin_size * draw_scaling_factor, this.physics_world.SPH_grid.bin_size * draw_scaling_factor);
+        ctx.strokeStyle = 'rgba(53,53,53,1)';
+        ctx.stroke();
+      }
     }
   }
 }
@@ -289,29 +304,29 @@ document.getElementById("SketchCanvas").addEventListener("mouseleave", function 
 
 function start_drag() {
   pointer_state = 1;
-    var near_list = [];
-    for (var i = 0; i < physics_world.particles.length; i++) {
-      var dist_apart = physics_world.particles[i].pos.subtract(new Vector2(pointer_x, pointer_y));
-      if (dist_apart.magnitude() < pointer_interaction_radius) {
-        near_list.push(physics_world.particles[i]);
-      }
+  var near_list = [];
+  for (var i = 0; i < physics_world.particles.length; i++) {
+    var dist_apart = physics_world.particles[i].pos.subtract(new Vector2(pointer_x, pointer_y));
+    if (dist_apart.magnitude() < pointer_interaction_radius) {
+      near_list.push(physics_world.particles[i]);
     }
-    // Sort any particles within the pointer interaction radius by the distance to the pointer location in order to find the nearest particle https://en.wikipedia.org/wiki/Insertion_sort
-    var i = 1;
-    while (i < near_list.length) {
-      var j = i;
-      while ((j > 0) && (near_list[j - 1].pos.subtract(new Vector2(pointer_x, pointer_y)).magnitude() > near_list[j].pos.subtract(new Vector2(pointer_x, pointer_y)).magnitude())) {
-        var b = near_list[j];
-        near_list[j] = near_list[j - 1];
-        near_list[j - 1] = b;
-        j = j - 1;
-      }
-      i = i + 1;
+  }
+  // Sort any particles within the pointer interaction radius by the distance to the pointer location in order to find the nearest particle https://en.wikipedia.org/wiki/Insertion_sort
+  var i = 1;
+  while (i < near_list.length) {
+    var j = i;
+    while ((j > 0) && (near_list[j - 1].pos.subtract(new Vector2(pointer_x, pointer_y)).magnitude() > near_list[j].pos.subtract(new Vector2(pointer_x, pointer_y)).magnitude())) {
+      var b = near_list[j];
+      near_list[j] = near_list[j - 1];
+      near_list[j - 1] = b;
+      j = j - 1;
     }
-    if (near_list.length > 0) {
-      physics_world.create_point_constraint(near_list[0], pointer_x, pointer_y, 0.6);
-      pointer_point_constraint = physics_world.constraints[physics_world.constraints.length - 1];
-    }
+    i = i + 1;
+  }
+  if (near_list.length > 0) {
+    physics_world.create_point_constraint(near_list[0], pointer_x, pointer_y, 0.6);
+    pointer_point_constraint = physics_world.constraints[physics_world.constraints.length - 1];
+  }
 }
 
 function stop_drag() {

@@ -97,24 +97,41 @@ limitations under the License.
     <h1 id="About">About</h1>
     <br />
     <p>The aim of this project is to develop a 2D particle based constrained dynamics physics engine for web based
-      animations.
-      <br />
-      <br />
-      The dynamic behavior of different forms of matter can be approximated using various arrangements of particles,
+      animation.</p>
+    <p>The dynamic behavior of different forms of matter can be approximated using various arrangements of
+      particles,
       constraints and world boundaries. This includes the behavior of single particles, flexible bodies (eg
       string/rope, cloth, jelly), pseudo rigid bodies (to-do) and fluids (eg water). This pure particle based approach,
       where dynamic complexity emerges from carefully configured collections of simple elements, enables the physics
-      engine to be relatively light weight (e.g. collision detection only needs to consider particle-particle and
-      particle-boundary collisions).
-      <br />
-      <br />
-      The physics engine, including this demonstration/documentation web page, is hosted on GitHub and licensed under
-      the permissive open source Apache 2.0 License.
-      <br />
-      <br />
-      The engine is not intended to be used for scientific simulation/analysis.
-      <br />
-    </p>
+      engine to be relatively light weight.</p>
+    <p>Key features of the physics engine include the following:</p>
+    <ul>
+      <li>Pure particle based approach to modelling matter</li>
+      <li>Robust time integration scheme (Verlet with implicit velocities)</li>
+      <li>Constraint types
+        <ul>
+          <li>Distance (equality)</li>
+          <li>Point (equality)</li>
+          <li>Contact (inequality)</li>
+        </ul>
+      </li>
+      <li>Collision types
+        <ul>
+          <li>Particle vs particle</li>
+          <li>Particle vs domain boundary</li>
+        </ul>
+      </li>
+      <li>Force based effects including:
+        <ul>
+          <li>Fluid simulation using Smoothed Particle Hydrodynamics (SPH)</li>
+          <li>N-body attraction</li>
+          <li>Arbitrary force fields</li>
+        </ul>
+      </li>
+    </ul>
+    <p>The engine is not intended to be used for scientific simulation/analysis.</p>
+    <p>The physics engine, including this demonstration/documentation web page, is hosted on GitHub and licensed under
+      the permissive open source Apache 2.0 License.</p>
     <br />
     <h1 id="Usage">Usage</h1>
     <br />
@@ -129,11 +146,10 @@ limitations under the License.
       <li>Angle constraints</li>
       <li>Arbitrary boundaries</li>
       <li>More efficient vector math (reduced object construction/destruction)</li>
-      <li>More efficient fluid dynamics</li>
       <li>Friction</li>
-      <li>Improved collision detection and response (particle-particle, particle-boundary)</li>
+      <li>Fluid surface tension effects</li>
+      <li>Improved collision detection and response (implement particle-particle collision response)</li>
       <li>Improved documentation</li>
-      <li>Additional spatial partitioning algorithms (grid, quadtree)</li>
       <li>Collision detection optimisation using spatial partitioning</li>
       <li>Pseudo rigid bodies</li>
       <li>Particle emitters and destroyers</li>

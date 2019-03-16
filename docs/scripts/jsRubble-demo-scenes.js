@@ -192,6 +192,36 @@ var scenes = [
 
   [
 
+    name = "Fluid-1024-particles",
+
+    loader = function () {
+      physics_frequency = 100;
+      physics_period = 1 / physics_frequency;
+      world_size = 10;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = -9.81;
+      create_fluid_cluster(5, 5, 0.1, 8, 8, 32, 32, 90, 1000, false);
+    }
+
+  ],
+
+  [
+
+    name = "Fluid-1600-particles",
+
+    loader = function () {
+      physics_frequency = 100;
+      physics_period = 1 / physics_frequency;
+      world_size = 10;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = -9.81;
+      create_fluid_cluster(5, 5, 0.1, 8, 8, 40, 40, 90, 1000, false);
+    }
+
+  ],
+
+  [
+
     name = "Fluid-waves",
 
     loader = function () {
@@ -227,6 +257,28 @@ var scenes = [
 
   [
 
+    name = "Fluid-sponge-interaction",
+
+    loader = function () {
+      physics_frequency = 100;
+      physics_period = 1 / physics_frequency;
+      world_size = 10;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = -9.81;
+      physics_world.SPH_target_density = 1000;
+      physics_world.particle_to_particle_collisions = false;
+      create_fluid_cluster(5, 2.7, 0, 9, 5, 25, 18, 100, 1000, true);
+      var index = physics_world.particles.length;
+      create_blob(5, 8, 2 * PI / 20 * 6, 2, 2, 5, 5, 90, 500, 0.1, false, null);
+      for (var i = index; i < physics_world.particles.length; i++) {
+        physics_world.particles[i].SPH_particle = true;
+      }
+    }
+
+  ],
+
+  [
+
     name = "Particle-cluster",
 
     loader = function () {
@@ -236,6 +288,26 @@ var scenes = [
       physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
       physics_world.gravitational_field.y = -9.81;
       create_square_cluster(5, 5, -2 * PI / 8, 4, 5, 12, 15, 90, 50);
+    }
+
+  ],
+
+  [
+
+    name = "Restitution",
+
+    loader = function () {
+      physics_frequency = 100;
+      physics_period = 1 / physics_frequency;
+      world_size = 10;
+      physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
+      physics_world.gravitational_field.y = -9.81;
+      physics_world.create_particle(8, 8, 0, 0, 0, 0, 0, 0, 200, 0.5, false);
+      physics_world.particles[physics_world.particles.length - 1].coefficient_of_restitution = 0.9
+      physics_world.create_particle(5, 8, 0, 0, 0, 0, 0, 0, 1500, 0.5, false);
+      physics_world.particles[physics_world.particles.length - 1].coefficient_of_restitution = 0.5
+      physics_world.create_particle(2, 8, 0, 0, 0, 0, 0, 0, 5000, 0.5, false);
+      physics_world.particles[physics_world.particles.length - 1].coefficient_of_restitution = 0.3;
     }
 
   ],
@@ -649,9 +721,9 @@ var scenes = [
       world_size = 10;
       physics_world = new PhysicsWorld(world_size, world_size, physics_period, 10);
       physics_world.gravitational_field.y = -9.81;
-      create_rope(1, 5, 9, 5, 30, 95, 40, 0.85);
+      create_rope(1, 6, 9, 6, 30, 95, 20, 0.85);
       physics_world.particles[physics_world.particles.length - 1].fixed = true;
-      physics_world.create_particle(4, 7, 0, 0, 0, 0, 0, 0, 150, 1, false);
+      physics_world.create_particle(4, 7.5, 0, 0, 0, 0, 0, 0, 120, 1, false);
     }
 
   ],
